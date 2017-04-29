@@ -1,0 +1,32 @@
+= form_for @movie do |f|
+  - if @movie.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@movie.errors.count, "error")} prohibited this movie from being saved:"
+      %ul
+        - @movie.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :genre
+    = f.text_field :genre
+  .field
+    = f.label :duration
+    = f.text_field :duration
+  .field
+    = f.label :country
+    = f.text_field :country
+  .field
+    = f.label :company
+    = f.text_field :company
+  .field
+    = f.label :age_rating
+    = f.number_field :age_rating
+
+  .field
+    = f.label :staffs, "Работники"
+    = f.select :staffs, Staff.all.collect{|t| [t.last_name, t.id]}, {:prompt => "Выберите работников"}, {:multiple => true} 
+  .actions
+    = f.submit 'Save'

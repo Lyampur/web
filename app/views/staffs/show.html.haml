@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Last name:
+  = @staff.last_name
+%p
+  %b First name:
+  = @staff.first_name
+%p
+  %b Birthday:
+  = @staff.birthday
+
+= link_to 'Edit', edit_staff_path(@staff)
+\|
+= link_to 'Back', staffs_path

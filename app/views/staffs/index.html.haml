@@ -1,0 +1,25 @@
+%h1 Listing staffs
+
+%table
+  %thead
+    %tr
+      %th Last name
+      %th First name
+      %th Birthday
+      %th
+      %th
+      %th
+
+  %tbody
+    - @staffs.each do |staff|
+      %tr
+        %td= staff.last_name
+        %td= staff.first_name
+        %td= staff.birthday
+        %td= link_to 'Show', staff
+        %td= link_to 'Edit', edit_staff_path(staff)
+        %td= link_to 'Destroy', staff, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Staff', new_staff_path
