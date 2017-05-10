@@ -17,9 +17,14 @@ ActiveRecord::Schema.define(version: 20170510073425) do
   enable_extension "plpgsql"
 
   create_table "cinema_movies", force: :cascade do |t|
+    t.integer  "cinema_id"
+    t.integer  "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "cinema_movies", ["cinema_id"], name: "index_cinema_movies_on_cinema_id", using: :btree
+  add_index "cinema_movies", ["movie_id"], name: "index_cinema_movies_on_movie_id", using: :btree
 
   create_table "cinemas", force: :cascade do |t|
     t.string   "name",       null: false
@@ -137,6 +142,8 @@ ActiveRecord::Schema.define(version: 20170510073425) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "cinema_movies", "cinemas"
+  add_foreign_key "cinema_movies", "movies"
   add_foreign_key "movie_staffs", "movies"
   add_foreign_key "movie_staffs", "staffs"
   add_foreign_key "role_users", "roles"
