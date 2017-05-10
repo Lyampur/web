@@ -14,16 +14,16 @@ ru2 = RoleUser.create(role: r2, user: u2)
 
 Movie.delete_all; Staff.delete_all; Cinema.delete_all
 
-Cinema.create(name: "Пионер", address: "Кутузовский просп., 21")
-Cinema.create(name: "Иллюзион", address: "Котельническая наб., 1/15")
+Cinema.find_or_create_by(name: "Пионер", address: "Кутузовский просп., 21")
+Cinema.find_or_create_by(name: "Иллюзион", address: "Котельническая наб., 1/15")
 
-Staff.create(last_name: "ДиКаприо", first_name: "Леонардо", birthday: "11/11/1974")
-Staff.create(last_name: "Нолан", first_name: "Кристофер", birthday: "07/30/1970")
+Staff.find_or_create_by(last_name: "ДиКаприо", first_name: "Леонардо", birthday: "11/11/1974")
+Staff.find_or_create_by(last_name: "Нолан", first_name: "Кристофер", birthday: "30/07/1970")
 #Staff.create(last_name: "Харди", first_name: "Том", birthday: "09/15/1977")
 #Staff.create(last_name: "Хэтэуэй", first_name: "Энн", birthday: "11/12/1982")
 
-Movie.create(name: "Начало", genre: "фантастика, боевик", duration: "148 мин.", country: "США, Великобритания", company: "Warner Bros.", age_rating: 12)
-Movie.create(name: "Интерстеллар", genre: "фантастика, драма", duration: "169 мин.", country: "США, Великобритания", company: "Warner Bros.", age_rating: 12)
+Movie.find_or_create_by(name: "Начало", genre: "фантастика, боевик", duration: "148 мин.", country: "США, Великобритания", company: "Warner Bros.", age_rating: 12)
+Movie.find_or_create_by(name: "Интерстеллар", genre: "фантастика, драма", duration: "169 мин.", country: "США, Великобритания", company: "Warner Bros.", age_rating: 12)
 #Movie.create(name: "Выживший", genre: "триллер, драма", duration: "156 мин.", country: "США, Гонконг", company: "20th Century Fox", age_rating: 18)
 
 Movie.first.staffs << Staff.first

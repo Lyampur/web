@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428115039) do
+ActiveRecord::Schema.define(version: 20170510073425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cinema_movies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cinemas", force: :cascade do |t|
     t.string   "name",       null: false
@@ -22,13 +27,6 @@ ActiveRecord::Schema.define(version: 20170428115039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "cinemas_movies", id: false, force: :cascade do |t|
-    t.integer "cinema_id", null: false
-    t.integer "movie_id",  null: false
-  end
-
-  add_index "cinemas_movies", ["cinema_id", "movie_id"], name: "index_cinemas_movies_on_cinema_id_and_movie_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
