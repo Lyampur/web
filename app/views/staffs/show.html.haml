@@ -1,15 +1,15 @@
 %p#notice= notice
 
 %p
-  %b Last name:
+  %b Фамилия:
   = @staff.last_name
 %p
-  %b First name:
+  %b Имя:
   = @staff.first_name
 %p
-  %b Birthday:
+  %b Дата рождения:
   = @staff.birthday
 
-= link_to 'Edit', edit_staff_path(@staff)
+= link_to 'Изменить', edit_staff_path(@staff)
 \|
-= link_to 'Back', staffs_path
+= link_to 'Назад', staffs_path

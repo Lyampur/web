@@ -24,16 +24,15 @@ module SideBarHelper
        :class => 'long'},
     ]} 
     result << {
-      :name => 'Заголовок ссылок',
-      :icon => 'search-plus',
+      :name => 'База данных',
+      :icon => 'database',
       :children => [
-      {:name => 'Ссылка ребёнок',
-       :controller => :welcome, :action => :index,
-       :icon => 'binoculars'},
-      {:name => 'Ссылка ребёнок',
-       :controller => :welcome, :action => :index,
-       :icon => 'search',
-       :class => 'long'}
+      {:name => 'Кинотеатр',
+       :controller => :cinemas, :action => :index,
+       :icon => 'globe'},
+      {:name => 'Фильм',
+       :controller => :movies, :action => :index,
+       :icon => 'film'}
     ]} 
     result
   end

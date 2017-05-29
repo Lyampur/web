@@ -1,24 +1,24 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b Название:
   = @movie.name
 %p
-  %b Genre:
+  %b Жанр:
   = @movie.genre
 %p
-  %b Duration:
+  %b Продолжительность:
   = @movie.duration
 %p
-  %b Country:
+  %b Страна:
   = @movie.country
 %p
-  %b Company:
+  %b Компания:
   = @movie.company
 %p
-  %b Age rating:
+  %b Возрастное ограничение:
   = @movie.age_rating
 
-= link_to 'Edit', edit_movie_path(@movie)
+= link_to 'Изменить', edit_movie_path(@movie)
 \|
-= link_to 'Back', movies_path
+= link_to 'Назад', movies_path

@@ -1,31 +1,37 @@
-%h1 Listing movies
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Genre
-      %th Duration
-      %th Country
-      %th Company
-      %th Age rating
-      %th
-      %th
-      %th
-
-  %tbody
-    - @movies.each do |movie|
+%h1 Список фильмов
+.table-responsive
+  %table.table.table-hover.table-striped.center
+    %thead
       %tr
-        %td= movie.name
-        %td= movie.genre
-        %td= movie.duration
-        %td= movie.country
-        %td= movie.company
-        %td= movie.age_rating
-        %td= link_to 'Show', movie
-        %td= link_to 'Edit', edit_movie_path(movie)
-        %td= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Имя
+        %th Жанр
+        %th Продолжительность
+        %th Страна
+        %th Компания
+        %th Возрастное ограничение
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @movies.each do |movie|
+        %tr
+          %td= movie.name
+          %td= movie.genre
+          %td= movie.duration
+          %td= movie.country
+          %td= movie.company
+          %td= movie.age_rating
+          %td
+            = link_to movie, class: 'btn btn-success' do
+              = fa_icon :eye
+          %td
+            = link_to edit_movie_path(movie), class: 'btn btn-info' do
+              = fa_icon :edit
+          %td
+            = link_to movie, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+              = fa_icon :times
 
-= link_to 'New Movie', new_movie_path
+  %br
+
+  = link_to 'Новый фильм', new_movie_path

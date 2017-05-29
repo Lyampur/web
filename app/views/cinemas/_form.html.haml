@@ -1,20 +1,18 @@
 = form_for @cinema do |f|
-  - if @cinema.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@cinema.errors.count, "error")} prohibited this cinema from being saved:"
-      %ul
-        - @cinema.errors.full_messages.each do |message|
-          %li= message
+  = error_messages_for @cinema
 
   .field
     = f.label :name
     = f.text_field :name
+    = f.error_messages_for(:name)
   .field
     = f.label :address
     = f.text_area :address
+    = f.error_messages_for(:address)
   .field
     = f.label :movies, "Фильмы"
     = f.select :movies, Movie.all.collect{|t| [t.name, t.id]}, {:prompt => "Выберите фильмы"}, {:multiple => true} 
+    = f.error_messages_for(:movie_id)
 
   .actions
-    = f.submit 'Save'
+    = f.submit 'Сохранить'

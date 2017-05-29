@@ -6,7 +6,7 @@ ru:
       department: Кафедра
     users:
       index: Список пользователей
-      new-button: Новый пользователь 
+      new-button: Новый пользователь
       edit: Редактирование пользователя
       new: Создание пользователя
     roles:
@@ -14,13 +14,47 @@ ru:
       new-button: Новая роль
       edit: Редактирование роли
       new: Создание роли
+    movies:
+      index: Список фильмов
+      new-button: Новый фильм
+      edit: Редактирование фильма
+      new: Создание фильма
+    cinemas:
+      index: Список кинотеатров
+      new-button: Новый кинотеатр
+      edit: Редактирование кинотеатра
+      new: Создание кинотеатра
+    staffs:
+      index: Список работников
+      new-button: Новый работник
+      edit: Редактирование работника
+      new: Создание работника
   helpers:
     submit:
       create: Сохранить
       submit: Сохранить
       update: Сохранить
-    sure: Действительно удалить?      
-  
+    sure: Действительно удалить?
+  buttons:
+    edit: Редактировать
+    destroy: Удалить
+    show: Показать
+    confirm:
+      user: Действительно удалить пользователя?
+      role: Действительно удалить роль?
+    new:
+      user: Новый пользователь
+      role: Новая роль
+  headers:
+    users:
+      edit: Редактирование пользователя
+      new: Новый пользователь
+      index: Список пользователей
+    roles:
+      index: Список возможных ролей пользователей
+      edit: Редактирование роли
+      new: Новая роль
+    sure: Действительно удалить?
   views:
     pagination:
       first: ⇤
@@ -45,10 +79,23 @@ ru:
         name: Обозначение
         info: Краткое название
         full_info: Описание
+      movie:
+        name: Название
+        genre: Жанр
+        duration: Продолжительность
+        country: Страна
+        company: Компания
+        age_rating: Возрастное ограничение
+      cinema:
+        name: Название
+        address: Адрес
+      staff:
+        last_name: Фамилия
+        first_name: Имя
+        birthday: Дата рождения
     errors:
       models:
         person:
           attributes:
             snils:
               check_sum: имеет неправильную контрольную сумму
-          
