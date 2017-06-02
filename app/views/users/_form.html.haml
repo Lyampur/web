@@ -18,6 +18,13 @@
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: 'form-control'
           = f.error_messages_for(:password_confirmation)
+  - if @current_role_user.present? and @current_role_user.is_admin?
+    .row
+      .col-md-12
+        = link_to_add_role(f, f.object)
+    - i = 0
+    = f.fields_for :role_users do |fr|
+      = fr.hidden_field :id
+      = render('users/one_role_user_form', i: i + 1, fr: fr)
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
-

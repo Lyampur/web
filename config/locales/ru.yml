@@ -79,6 +79,14 @@ ru:
         name: Обозначение
         info: Краткое название
         full_info: Описание
+      role_user: &role_users
+        role_id: Роль
+        role: Роль
+        user_id: Пользователь
+        user: Пользователь
+        data: Данные
+      user/role_users:
+        <<: *role_users
       movie:
         name: Название
         genre: Жанр
