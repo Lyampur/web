@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :staffs
-  resources :movies
+  resources :movies do
+    collection do
+      get :search
+    end
+  end
   resources :cinemas
   resources :role_users
   resources :roles
