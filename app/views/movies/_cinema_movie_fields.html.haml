@@ -1,0 +1,38 @@
+.col-md-6
+  %div{class: 'panel panel-'+ (i.kind_of?(Integer) ? 'success' : 'info')}
+    .panel-heading
+      Кинотеатр #
+      = i
+      %span.toright
+        = link_to_remove_cinema(df)
+      .clearfix
+    .panel-body
+      .row
+        .col-md-6
+          .form-group
+            = df.label :name
+            = df.number_field :name, class: 'form-control'
+        .col-md-6
+          .form-group
+            = df.label :address
+            = df.text_field :address, class: 'form-control'
+-# %div.nested-fields{ class: "existing-cinema#{f.object.try(:cinema).try(:id)}" }
+-#   .form-group
+-#     .row
+-#       .col-md-4
+-#         = f.label :cinema_id
+-#         = f.collection_select :cinema_id, Cinema.all,
+-#         :id, :name, {include_blank: true, }
+
+    -# = f.fields_for :cinema, f.object.cinema || f.object.build_cinema do |fa|
+    -#   .row
+    -#     .col-md-6.cinema-name
+    -#       = fa.label :name
+    -#       = fa.text_field :name
+    -#       = fa.error_messages_for(:name)
+    -#     .col-md-6.cinema-address
+    -#       = fa.label :address
+    -#       = fa.text_area :address
+    -#       = fa.error_messages_for(:address)
+    -#     .cinema-id
+    -#       = fa.hidden_field :id

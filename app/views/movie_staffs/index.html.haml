@@ -1,0 +1,23 @@
+%h1 Listing movie_staffs
+
+%table
+  %thead
+    %tr
+      %th Movie
+      %th Staff
+      %th
+      %th
+      %th
+
+  %tbody
+    - @movie_staffs.each do |movie_staff|
+      %tr
+        %td= movie_staff.movie
+        %td= movie_staff.staff
+        %td= link_to 'Show', movie_staff
+        %td= link_to 'Edit', edit_movie_staff_path(movie_staff)
+        %td= link_to 'Destroy', movie_staff, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Movie staff', new_movie_staff_path
