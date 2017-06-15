@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170615132358) do
 
   # These are extensions that must be enabled in order to support this database
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170615132358) do
   add_index "roles", ["info"], name: "index_roles_on_info", unique: true, using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
 
+
   create_table "staffs", force: :cascade do |t|
     t.string   "last_name",  null: false
     t.string   "first_name", null: false
@@ -122,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170615132358) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
+    t.date     "birthday"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree

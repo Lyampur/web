@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def new_by_admin
+    @user = User.new
+  end
+
   # GET /users/1/edit
   def edit
   end
@@ -39,12 +43,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def create_by_admin
+    @user = User.new(user_params)
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to users_path(), notice: 'Пользователь создан. На его почту отправлено сообщение об активации.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_path, notice: 'Пользователь изменён.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -58,7 +76,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Пользователь удалён.' }
       format.json { head :no_content }
     end
   end
@@ -82,6 +100,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation,
         :activation_state, :activation_token, :activation_token_expires_at,
-        role_users_attributes: [:id, :_destroy, :role_id, :data, :user_id])
+      # nested_start
+      # Добавляем связанные атрибуты
+        {role_users_attributes: [:_destroy, :id, :role_id, :data]}
+      # nested_finish
+      )
     end
 end
