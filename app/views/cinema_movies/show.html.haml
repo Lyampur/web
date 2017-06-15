@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Cinema:
+  = @cinema_movie.cinema
+%p
+  %b Movie:
+  = @cinema_movie.movie
+
+= link_to 'Edit', edit_cinema_movie_path(@cinema_movie)
+\|
+= link_to 'Back', cinema_movies_path

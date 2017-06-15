@@ -1,0 +1,37 @@
+.col-md-6
+  %div{class: 'panel panel-'+ (i.kind_of?(Integer) ? 'success' : 'info')}
+    .panel-heading
+      Автор #
+      = i
+      %span.toright
+        = link_to_remove_staff(df)
+      .clearfix
+    .panel-body
+      .row
+        .col-md-6
+          .form-group
+            = df.label :role
+            = df.text_field :role
+            = df.error_messages_for(:role)
+
+      = df.fields_for :staff, df.object.staff ||df.object.build_staff do |sf|
+        .row
+          .col-md-6
+            .form-group
+              = sf.label :first_name
+              = sf.text_field :first_name
+              -# = sf.error_messages_for(:first_name)
+          .col-md-6
+            .form-group
+              = sf.label :last_name
+              = sf.text_field :last_name
+              -# = sf.error_messages_for(:last_name)
+        .row
+          .col-md-6
+            .form-group
+              = sf.label :birthday
+              .input-group.date.datepicker
+                = sf.text_field(:birthday, value: lnil(sf.object.birthday),
+                class: 'form-control')
+                %span.input-group-addon
+                  %span.glyphicon.glyphicon-calendar

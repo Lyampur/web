@@ -25,9 +25,31 @@
     = f.number_field :age_rating
     = f.error_messages_for(:age_rating)
 
-  .field
-    = f.label :staffs, "Работники"
-    = f.select :staffs, Staff.all.collect{|t| [t.last_name, t.id]}, {:prompt => "Выберите работников"}, {:multiple => true} 
-    = f.error_messages_for(:staff_id)
+  -# .field
+  -#   = f.label :staffs, "Работники"
+  -#   = f.select :staffs, Staff.all.collect{|t| [t.last_name, t.id]}, {:prompt => "Выберите работников"}, {:multiple => true}
+  -#   = f.error_messages_for(:staff_id)
   .actions
     = f.submit 'Сохранить'
+
+  %h2 Выберите зарегистрированных авторов
+  %h3 (для выбора нескольких зажмите ctrl)
+  .field
+    = f.select :staffs, Staff.all.collect{|t| [t.last_name + " " + t.first_name, t.id]}, {:prompt => ""}, {:multiple => true, class: 'form-control'}
+  %h2 Введите данные для незарегистрированных авторов
+  - i = 0
+  .row.bottom20
+    .col-md-12
+      = link_to_add_staff(f, f.object)
+  .row
+    = f.fields_for :movie_staffs, f.object.movie_staffs || f.object.movie_staffs.build do |df|
+      .field.pidor
+        = df.hidden_field :id
+        = render('movies/staff_movie_form', df: df, i: i + 1)
+        -i = i+1
+  -# %br
+  -# - if is_admin?
+  -#   .form-actions.bottom20
+  -#     = f.submit nil, class: 'btn btn-primary'
+  -# - else
+  -# %h3 Вносить изменения(регистрировать новые) может только администратор

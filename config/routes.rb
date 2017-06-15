@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :movie_staffs
+  resources :cinema_movies
   resources :staffs
   resources :movies do
     collection do

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Movie:
+  = @movie_staff.movie
+%p
+  %b Staff:
+  = @movie_staff.staff
+%p
+  %b Role:
+  = @movie_staff.role
+
+= link_to 'Edit', edit_movie_staff_path(@movie_staff)
+\|
+= link_to 'Back', movie_staffs_path

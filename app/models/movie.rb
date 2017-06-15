@@ -6,6 +6,8 @@ class Movie < ActiveRecord::Base
   validates :name, :genre, :duration, :country, :company, :age_rating, presence: true
   validates :genre, length: {in: 0..20}
 
+  accepts_nested_attributes_for :movie_staffs, allow_destroy: true
+
   def self.search(params)
     result = Movie
     if params['name'].present?
