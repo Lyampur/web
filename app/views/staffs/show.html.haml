@@ -1,15 +1,46 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.staffs.index'), staffs_path
+  %li
+    = @staff.first_name + " " + @staff.last_name
+
 %p#notice= notice
 
-%p
-  %b Фамилия:
-  = @staff.last_name
-%p
-  %b Имя:
-  = @staff.first_name
-%p
-  %b Дата рождения:
-  = @staff.birthday
+.show-links.mb5
+  = link_to fa_icon(:edit) + t('buttons.edit'),
+  edit_staff_path(@staff), class: 'btn btn-info'
+  = link_to @staff, :method => :delete,
+  :data => { :confirm => t('helpers.sure') },
+  class: 'btn btn-danger' do
+    = fa_icon :ban
+    = t('buttons.destroy')
 
-= link_to 'Изменить', edit_staff_path(@staff)
-\|
-= link_to 'Назад', staffs_path
+.forms-wrapper
+  .forms.main-form.mb5
+    %h3= t('helpers.forms.staff')
+    %dl
+      %dt= Staff.human_attribute_name(:last_name)
+      %dd= @staff.last_name
+      %dt= Staff.human_attribute_name(:first_name)
+      %dd= @staff.first_name
+      %dt= Staff.human_attribute_name(:birthday)
+      %dd= @staff.birthday
+  .forms.assotiation-forms.movies.mb5
+    %h3= t('helpers.forms.movies')
+    - @staff.movies.each do |movie|
+      .form-entry
+        %dl
+          %dt= Movie.human_attribute_name(:name)
+          %dd= movie.name
+          %dt= Movie.human_attribute_name(:genre)
+          %dd= movie.genre
+          %dt= Movie.human_attribute_name(:duration)
+          %dd= movie.duration
+          %dt= Movie.human_attribute_name(:country)
+          %dd= movie.country
+          %dt= Movie.human_attribute_name(:company)
+          %dd= movie.company
+          %dt= Movie.human_attribute_name(:age_rating)
+          %dd= movie.age_rating

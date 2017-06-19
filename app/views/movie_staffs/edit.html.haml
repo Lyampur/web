@@ -1,7 +1,7 @@
-%h1 Editing movie_staff
+%h1 Редактирование связи фильма и сотрудника
 
 = render 'form'
-
-= link_to 'Просмотр', @movie_staff
+%br
+= link_to t("buttons.show"), @movie_staff, class: 'btn btn-success'
 \|
-= link_to 'Назад', movie_staffs_path
+= link_to t("buttons.back"), movie_staffs_path, class: 'btn btn-primary'

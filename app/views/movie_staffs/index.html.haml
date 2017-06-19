@@ -1,25 +1,31 @@
-%h1 Listing movie_staffs
+%h1 Список связей фильмов и сотрудников
 
-%table.table.table-stripped.table-hover.center
-  %thead
-    %tr
-      %th Movie
-      %th Staff
-      %th Role
-      %th
-      %th
-      %th
-
-  %tbody
-    - @movie_staffs.each do |movie_staff|
-      %tr
-        %td= movie_staff.movie.name
-        %td= movie_staff.staff.last_name
-        %td= movie_staff.role
-        %td= link_to 'Show', movie_staff
-        %td= link_to 'Edit', edit_movie_staff_path(movie_staff)
-        %td= link_to 'Destroy', movie_staff, method: :delete, data: { confirm: 'Are you sure?' }
-
+= link_to t("buttons.new.association"), new_movie_staff_path, class: 'btn btn-primary'
 %br
 
-= link_to 'New Movie staff', new_movie_staff_path
+.table-responsive
+  %table.table.table-hover.table-striped.center
+    %thead
+      %tr
+        %th= t('helpers.forms.movie')
+        %th= t('helpers.forms.staff')
+        %th Роль
+        %th
+        %th
+        %th
+
+    %tbody
+      - @movie_staffs.each do |movie_staff|
+        %tr
+          %td= movie_staff.movie.name
+          %td= movie_staff.staff.last_name
+          %td= movie_staff.role
+          %td
+            = link_to movie_staff, class: 'btn btn-success' do
+              = fa_icon :eye
+          %td
+            = link_to edit_movie_staff_path(movie_staff), class: 'btn btn-info' do
+              = fa_icon :edit
+          %td
+            = link_to movie_staff, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+              = fa_icon :times

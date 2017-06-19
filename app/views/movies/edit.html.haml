@@ -1,7 +1,14 @@
-%h1 Изменение фильма
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.movies.index'), movies_path
+  %li.active
+    = link_to @movie.name, @movie
+  %li
+    = t('app.movies.edit')
+
+.page-header
+  %h1= t('app.movies.edit')
 
 = render 'form'
-
-= link_to 'Просмотр', @movie
-\|
-= link_to 'Назад', movies_path

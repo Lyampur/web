@@ -1,0 +1,72 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.movies.index'), movies_path
+  %li
+    = t('app.movies.search')
+
+.page-header
+  %h1= t('helpers.forms.search')
+
+= form_tag search_movies_path, method: 'get' do
+  .actions.mb5
+    = submit_tag t('buttons.search'), class: 'btn btn-primary'
+
+  .panel.panel-primary
+    .panel-heading
+      = t('helpers.forms.movie')
+    .panel-body
+      .row
+        .field.col-xs-12
+          = label_tag Movie.human_attribute_name(:name)
+          = text_field_tag 'search[movie][name]', nil, class: 'form-control'
+        .field.col-xs-12
+          = label_tag Movie.human_attribute_name(:genre)
+          = text_field_tag 'search[movie][genre]', nil, class: 'form-control'
+        .field.col-xs-12.col-md-6
+          = label_tag Movie.human_attribute_name(:country)
+          = text_field_tag 'search[movie][country]', nil, class: 'form-control'
+        .field.col-xs-12.col-md-6
+          = label_tag Movie.human_attribute_name(:company)
+          = text_field_tag 'search[movie][company]', nil, class: 'form-control'
+        .field.col-xs-12.col-md-6
+          = label_tag Movie.human_attribute_name(:duration)
+          = text_field_tag 'search[movie][duration]', nil, class: 'form-control'
+        .field.col-xs-12.col-md-6
+          = label_tag Movie.human_attribute_name(:age_rating)
+          = number_field_tag 'search[movie][age_rating]', nil, class: 'form-control'
+
+  .panel.panel-primary
+    .panel-heading
+      = t('helpers.forms.staff')
+    .panel-body
+      .row
+        .field.col-xs-12
+          = label_tag MovieStaff.human_attribute_name(:role)
+          = text_field_tag 'search[movie_staff][role]', nil, class: 'form-control'
+        .field.col-xs-12.col-md-6
+          = label_tag Staff.human_attribute_name(:last_name)
+          = text_field_tag 'search[staff][last_name]', nil, class: 'form-control'
+        .field.col-xs-12.col-md-6
+          = label_tag Staff.human_attribute_name(:first_name)
+          = text_field_tag 'search[staff][first_name]', nil, class: 'form-control'
+        .field.col-xs-12
+          = label_tag Staff.human_attribute_name(:birthday)
+          .input-group.date.datepicker
+            = text_field_tag('search[staff][birthday]', nil,
+            class: 'form-control')
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+
+  .panel.panel-primary
+    .panel-heading
+      = t('helpers.forms.cinema')
+    .panel-body
+      .row
+        .field.col-xs-12
+          = label_tag Cinema.human_attribute_name(:name)
+          = text_field_tag 'search[cinema][name]', nil, class: 'form-control'
+        .field.col-xs-12
+          = label_tag Cinema.human_attribute_name(:address)
+          = text_area_tag 'search[cinema][address]', nil, class: 'form-control'

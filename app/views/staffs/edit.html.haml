@@ -1,7 +1,16 @@
-%h1 Изменение работника
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.staffs.index'), staffs_path
+  %li.active
+    = link_to @staff.first_name + " " + @staff.last_name, @staff
+  %li
+    = t('app.staffs.edit')
+
+%p#notice= notice
+
+.page-header
+  %h1= t('app.staffs.edit')
 
 = render 'form'
-
-= link_to 'Просмотр', @staff
-\|
-= link_to 'Назад', staffs_path

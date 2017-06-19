@@ -1,0 +1,38 @@
+.forms-wrapper
+  .forms
+    border: 1px solid grey
+    padding: 0
+    margin-bottom: 5px
+    h3
+      height: 40px
+      margin: 0
+      background-color: #41a1d1
+    dl
+      padding-left: 10px
+    .form-entry
+      border-bottom: 1px solid grey
+
+td.table-links
+  display: flex
+  justify-content: space-around
+
+@media screen and (max-width: 1200px)
+  .adaptive-table
+    thead
+      display: none
+    tr
+      border-top: 1px solid black
+      border-bottom: 1px solid black
+      margin-bottom: 10px
+      display: block
+    td
+      text-align: right !important
+      min-height: 40px
+      display: block
+    td:before
+      content: attr(data-label)
+      float: left
+      text-transform: uppercase
+      font-weight: bold
+    td.table-links a
+      width: 15%

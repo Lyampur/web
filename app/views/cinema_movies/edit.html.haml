@@ -1,7 +1,7 @@
-%h1 Editing cinema_movie
+%h1 Редактирование связи кинотеатра и фильма
 
 = render 'form'
-
-= link_to 'Show', @cinema_movie
+%br
+= link_to t("buttons.show"), @cinema_movie, class: 'btn btn-success'
 \|
-= link_to 'Back', cinema_movies_path
+= link_to t("buttons.back"), cinema_movies_path, class: 'btn btn-primary'

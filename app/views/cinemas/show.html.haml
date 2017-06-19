@@ -1,12 +1,46 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.cinemas.index'), cinemas_path
+  %li
+    = @cinema.name
 
-%p
-  %b Название:
-  = @cinema.name
-%p
-  %b Адрес:
-  = @cinema.address
+.page-header
+  %h1= t('helpers.forms.cinema') + ' ' + "«" +  @cinema.name + "»"
 
-= link_to 'Изменить', edit_cinema_path(@cinema)
-\|
-= link_to 'Назад', cinemas_path
+.show-links.mb5
+  - if is_admin?
+    = link_to fa_icon(:edit) + t('buttons.edit'),
+    edit_cinema_path(@cinema), class: 'btn btn-info'
+    = link_to @cinema, :method => :delete,
+    :data => { :confirm => t('helpers.sure') },
+    class: 'btn btn-danger' do
+      = fa_icon :ban
+      = t('buttons.destroy')
+
+.forms-wrapper
+  .forms.main-form.mb5.col-md-12
+    %h3= t('helpers.forms.cinema')
+    %dl.dl-horizontal
+      %dt= Cinema.human_attribute_name(:name)
+      %dd= @cinema.name
+      %dt= Cinema.human_attribute_name(:address)
+      %dd= @cinema.address
+  .forms.assotiation-forms.movies.mb5.col-md-12
+    %h3= t('helpers.forms.movies')
+    - @cinema.movies.each do |movie|
+      .form-entry
+        %dl.dl-horizontal
+          %dt= Movie.human_attribute_name(:name)
+          %dd= movie.name
+          %dt= Movie.human_attribute_name(:genre)
+          %dd= movie.genre
+          %dt= Movie.human_attribute_name(:duration)
+          %dd= movie.duration
+          %dt= Movie.human_attribute_name(:country)
+          %dd= movie.country
+          %dt= Movie.human_attribute_name(:company)
+          %dd= movie.company
+          %dt= Movie.human_attribute_name(:age_rating)
+          %dd= movie.age_rating

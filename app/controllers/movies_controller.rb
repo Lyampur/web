@@ -2,12 +2,12 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def search
-    if params.has_key?('search')
-      @movies = Movie.search(params['search'])
+    if params.has_key?(:search)
+      @movies = Movie.search(search_params)
+      render 'search_result' and return
     else
-      @movies =[]
+      @movies = []
     end
-    params['search'] ||={}
   end
 
   # GET /movies
@@ -43,7 +43,7 @@ class MoviesController < ApplicationController
     respond_to do |format|
       if @movie.save
         @staffs.each{|a| a.movies << @movie}
-        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
+        format.html { redirect_to @movie, notice: t('helpers.forms.movie') + ' ' + t('helpers.notice.create') }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class MoviesController < ApplicationController
     respond_to do |format|
       if @movie.update(movie_params)
         @staffs.each{|a| a.movies << @movie}
-        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
+        format.html { redirect_to @movie, notice: t('helpers.forms.movie') + ' ' + t('helpers.notice.update') }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
     respond_to do |format|
-      format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.' }
+      format.html { redirect_to movies_url, notice: t('helpers.forms.movie') + ' ' + t('helpers.notice.destroy') }
       format.json { head :no_content }
     end
   end
@@ -83,6 +83,15 @@ class MoviesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
       @movie = Movie.find(params[:id])
+    end
+
+    def search_params
+      params.require(:search).permit(
+        movie:       Movie.attributes_names.map(&:to_sym),
+        staff:       Staff.attributes_names.map(&:to_sym),
+        movie_staff: MovieStaff.attributes_names.map(&:to_sym),
+        cinema:      Cinema.attributes_names.map(&:to_sym)
+      )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

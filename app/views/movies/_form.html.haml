@@ -1,36 +1,41 @@
 = form_for @movie do |f|
   = error_messages_for @movie
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :genre
-    = f.text_field :genre
-    = f.error_messages_for(:genre)
-  .field
-    = f.label :duration
-    = f.text_field :duration
-    = f.error_messages_for(:duration)
-  .field
-    = f.label :country
-    = f.text_field :country
-    = f.error_messages_for(:country)
-  .field
-    = f.label :company
-    = f.text_field :company
-    = f.error_messages_for(:company)
-  .field
-    = f.label :age_rating
-    = f.number_field :age_rating
-    = f.error_messages_for(:age_rating)
+  - if is_admin?
+    .row.mb5
+      .col-xs-12.actions
+        = f.submit nil, class: 'btn btn-primary'
+  - else
+    %p Вносить изменения (регистрировать новые) может только администратор
+  .panel.panel-primary
+    .panel-heading
+      = t('helpers.forms.movie')
+    .panel-body
+      .row
+        .field.col-xs-12
+          = f.label :name
+          = f.text_field :name, class: 'form-control'
+        .field.col-xs-12
+          = f.label :genre
+          = f.text_field :genre, class: 'form-control'
+          = f.error_messages_for(:genre)
+        .field.col-xs-12.col-md-6
+          = f.label :country
+          = f.text_field :country, class: 'form-control'
+          = f.error_messages_for(:country)
+        .field.col-xs-12.col-md-6
+          = f.label :company
+          = f.text_field :company, class: 'form-control'
+          = f.error_messages_for(:company)
+        .field.col-xs-12.col-md-6
+          = f.label :duration
+          = f.text_field :duration, class: 'form-control'
+          = f.error_messages_for(:duration)
+        .field.col-xs-12.col-md-6
+          = f.label :age_rating
+          = f.number_field :age_rating, class: 'form-control'
+          = f.error_messages_for(:age_rating)
 
-  -# .field
-  -#   = f.label :staffs, "Работники"
-  -#   = f.select :staffs, Staff.all.collect{|t| [t.last_name, t.id]}, {:prompt => "Выберите работников"}, {:multiple => true}
-  -#   = f.error_messages_for(:staff_id)
-  .actions
-    = f.submit 'Сохранить'
 
   %h2 Выберите зарегистрированных авторов
   %h3 (для выбора нескольких зажмите ctrl)
@@ -43,13 +48,7 @@
       = link_to_add_staff(f, f.object)
   .row
     = f.fields_for :movie_staffs, f.object.movie_staffs || f.object.movie_staffs.build do |df|
-      .field.pidor
+      .field
         = df.hidden_field :id
         = render('movies/staff_movie_form', df: df, i: i + 1)
         -i = i+1
-  -# %br
-  -# - if is_admin?
-  -#   .form-actions.bottom20
-  -#     = f.submit nil, class: 'btn btn-primary'
-  -# - else
-  -# %h3 Вносить изменения(регистрировать новые) может только администратор

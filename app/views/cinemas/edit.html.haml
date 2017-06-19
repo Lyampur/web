@@ -1,7 +1,14 @@
-%h1 Изменение кинотеатра
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.cinemas.index'), cinemas_path
+  %li.active
+    = link_to @cinema.name, @cinema
+  %li
+    = t('app.cinemas.edit')
+
+.page-header
+  %h1= t('app.cinemas.edit')
 
 = render 'form'
-
-= link_to 'Просмотр', @cinema
-\|
-= link_to 'Назад', cinemas_path

@@ -1,23 +1,29 @@
-%h1 Listing cinema_movies
+%h1 Список связей кинотеатров и фильмов
 
-%table
-  %thead
-    %tr
-      %th Cinema
-      %th Movie
-      %th
-      %th
-      %th
-
-  %tbody
-    - @cinema_movies.each do |cinema_movie|
-      %tr
-        %td= cinema_movie.cinema
-        %td= cinema_movie.movie
-        %td= link_to 'Show', cinema_movie
-        %td= link_to 'Edit', edit_cinema_movie_path(cinema_movie)
-        %td= link_to 'Destroy', cinema_movie, method: :delete, data: { confirm: 'Are you sure?' }
-
+= link_to t("buttons.new.association"), new_cinema_movie_path, class: 'btn btn-primary'
 %br
 
-= link_to 'New Cinema movie', new_cinema_movie_path
+.table-responsive
+  %table.table.table-hover.table-striped.center
+    %thead
+      %tr
+        %th= t('helpers.forms.movie')
+        %th= t('helpers.forms.cinema')
+        %th
+        %th
+        %th
+
+    %tbody
+      - @cinema_movies.each do |cinema_movie|
+        %tr
+          %td= cinema_movie.cinema.name
+          %td= cinema_movie.movie.name
+          %td
+            = link_to cinema_movie, class: 'btn btn-success' do
+              = fa_icon :eye
+          %td
+            = link_to edit_cinema_movie_path(cinema_movie), class: 'btn btn-info' do
+              = fa_icon :edit
+          %td
+            = link_to cinema_movie, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+              = fa_icon :times

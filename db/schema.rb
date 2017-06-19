@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20170615132358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cinema_movies", force: :cascade do |t|
-    t.integer  "cinema_id"
-    t.integer  "movie_id"
+    t.integer  "cinema_id",  null: false
+    t.integer  "movie_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "cinema_movies", ["cinema_id"], name: "index_cinema_movies_on_cinema_id", using: :btree
+  add_index "cinema_movies", ["movie_id", "cinema_id"], name: "index_cinema_movies_on_movie_id_and_cinema_id", unique: true, using: :btree
   add_index "cinema_movies", ["movie_id"], name: "index_cinema_movies_on_movie_id", using: :btree
 
   create_table "cinemas", force: :cascade do |t|
@@ -51,13 +51,14 @@ ActiveRecord::Schema.define(version: 20170615132358) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "movie_staffs", force: :cascade do |t|
-    t.integer  "movie_id"
-    t.integer  "staff_id"
+    t.integer  "movie_id",   null: false
+    t.integer  "staff_id",   null: false
     t.string   "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "movie_staffs", ["movie_id", "staff_id"], name: "index_movie_staffs_on_movie_id_and_staff_id", unique: true, using: :btree
   add_index "movie_staffs", ["movie_id"], name: "index_movie_staffs_on_movie_id", using: :btree
   add_index "movie_staffs", ["staff_id"], name: "index_movie_staffs_on_staff_id", using: :btree
 
@@ -93,7 +94,6 @@ ActiveRecord::Schema.define(version: 20170615132358) do
 
   add_index "roles", ["info"], name: "index_roles_on_info", unique: true, using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
-
 
   create_table "staffs", force: :cascade do |t|
     t.string   "last_name",  null: false

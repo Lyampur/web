@@ -16,7 +16,7 @@ class CinemasController < ApplicationController
   # GET /cinemas/new
   def new
     @cinema = Cinema.new
-    @movie = Movie.all 
+    @movie = Movie.all
   end
 
   # GET /cinemas/1/edit
@@ -33,7 +33,7 @@ class CinemasController < ApplicationController
     respond_to do |format|
       if @cinema.save
         @movies.each{|a| a.cinemas << @cinema}
-        format.html { redirect_to @cinema, notice: 'Cinema was successfully created.' }
+        format.html { redirect_to @cinema, notice: t('helpers.forms.cinema') + ' ' + t('helpers.notice.create') }
         format.json { render :show, status: :created, location: @cinema }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class CinemasController < ApplicationController
     respond_to do |format|
       if @cinema.update(cinema_params)
         @movies.each{|a| a.cinemas << @cinema}
-        format.html { redirect_to @cinema, notice: 'Cinema was successfully updated.' }
+        format.html { redirect_to @cinema, notice: t('helpers.forms.cinema') + ' ' + t('helpers.notice.update') }
         format.json { render :show, status: :ok, location: @cinema }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class CinemasController < ApplicationController
   def destroy
     @cinema.destroy
     respond_to do |format|
-      format.html { redirect_to cinemas_url, notice: 'Cinema was successfully destroyed.' }
+      format.html { redirect_to cinemas_url, notice: t('helpers.forms.cinema') + ' ' + t('helpers.notice.destroy') }
       format.json { head :no_content }
     end
   end

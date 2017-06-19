@@ -1,6 +1,9 @@
 = form_for @staff do |f|
   = error_messages_for @staff
 
+  .actions
+    = f.submit nil, class: 'btn btn-primary'
+
   .field
     = f.label :last_name
     = f.text_field :last_name
@@ -13,5 +16,3 @@
     = f.label :birthday
     = f.date_select :birthday
     = f.error_messages_for(:birthday)
-  .actions
-    = f.submit 'Сохранить'

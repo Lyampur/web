@@ -32,7 +32,10 @@ module SideBarHelper
        :icon => 'globe'},
       {:name => 'Фильм',
        :controller => :movies, :action => :index,
-       :icon => 'film'}
+       :icon => 'film'},
+      {:name => 'Поиск фильмов',
+       :controller => :movies, :action => :search,
+       :icon => 'search'}
 
     ]}
     result

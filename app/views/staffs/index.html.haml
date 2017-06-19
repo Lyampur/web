@@ -1,11 +1,22 @@
-%h1 Список работников
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li
+    = t('app.staffs.index')
+    
+.page-header
+  %h1= t("app.staffs.index")
+
+= link_to t("buttons.new.staff"), new_staff_path, class: 'btn btn-primary'
+%br
+
 .table-responsive
   %table.table.table-hover.table-striped.center
     %thead
       %tr
-        %th Фамилия
-        %th Имя
-        %th Дата рождения
+        %th= Staff.human_attribute_name(:last_name)
+        %th= Staff.human_attribute_name(:first_name)
+        %th= Staff.human_attribute_name(:birthday)
         %th
         %th
         %th
@@ -27,5 +38,3 @@
               = fa_icon :times
 
   %br
-
-  = link_to 'Новый работник', new_staff_path

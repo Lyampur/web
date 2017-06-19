@@ -1,15 +1,15 @@
 %p#notice= notice
 
 %p
-  %b Movie:
-  = @movie_staff.movie
+  %b Фильм:
+  = @movie_staff.movie.name
 %p
-  %b Staff:
-  = @movie_staff.staff
+  %b Сотрудник:
+  = @movie_staff.staff.last_name
 %p
-  %b Role:
+  %b Роль:
   = @movie_staff.role
 
-= link_to 'Edit', edit_movie_staff_path(@movie_staff)
+= link_to t("buttons.edit"), edit_movie_staff_path(@movie_staff), class: 'btn btn-info'
 \|
-= link_to 'Back', movie_staffs_path
+= link_to t("buttons.back"), movie_staffs_path, class: 'btn btn-primary'

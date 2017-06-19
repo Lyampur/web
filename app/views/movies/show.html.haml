@@ -1,24 +1,59 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.movies.index'), movies_path
+  %li
+    = @movie.name
 
-%p
-  %b Название:
-  = @movie.name
-%p
-  %b Жанр:
-  = @movie.genre
-%p
-  %b Продолжительность:
-  = @movie.duration
-%p
-  %b Страна:
-  = @movie.country
-%p
-  %b Компания:
-  = @movie.company
-%p
-  %b Возрастное ограничение:
-  = @movie.age_rating
+.page-header
+  %h1= t('helpers.forms.movie') + ' ' + "«" +  @movie.name + "»"
 
-= link_to 'Изменить', edit_movie_path(@movie)
-\|
-= link_to 'Назад', movies_path
+.show-links.mb5
+  - if is_admin?
+    = link_to fa_icon(:edit) + t('buttons.edit'),
+    edit_movie_path(@movie), class: 'btn btn-info'
+    = link_to @movie, :method => :delete,
+    :data => { :confirm => t('helpers.sure') },
+    class: 'btn btn-danger' do
+      = fa_icon :ban
+      = t('buttons.destroy')
+
+.forms-wrapper
+  .forms.main-form.mb5.col-md-12
+    %h3= t('helpers.forms.movie')
+    %dl.dl-horizontal
+      %dt= Movie.human_attribute_name(:name)
+      %dd= @movie.name
+      %dt= Movie.human_attribute_name(:genre)
+      %dd= @movie.genre
+      %dt= Movie.human_attribute_name(:duration)
+      %dd= @movie.duration
+      %dt= Movie.human_attribute_name(:country)
+      %dd= @movie.country
+      %dt= Movie.human_attribute_name(:company)
+      %dd= @movie.company
+      %dt= Movie.human_attribute_name(:age_rating)
+      %dd= @movie.age_rating
+  .forms.assotiation-forms.cinemas.mb5.col-md-6.col-xs-12
+    %h3= t('helpers.forms.cinemas')
+    - @movie.cinemas.each do |cinema|
+      .form-entry
+        %dl.dl-horizontal
+          %dt= Cinema.human_attribute_name(:name)
+          %dd= cinema.name
+          %dt= Cinema.human_attribute_name(:address)
+          %dd= cinema.address
+  .forms.assotiation-forms.staffs.mb5.col-md-5.col-xs-12.col-md-offset-1.col-xs-offset-0
+    %h3= t('helpers.forms.staffs')
+    - @movie.movie_staffs.each do |ms|
+      .form-entry
+        %dl.dl-horizontal
+          %dt= MovieStaff.human_attribute_name(:role)
+          %dd= ms.role
+          %dt= Staff.human_attribute_name(:last_name)
+          %dd= ms.staff.last_name
+          %dt= Staff.human_attribute_name(:first_name)
+          %dd= ms.staff.first_name
+          %dt= Staff.human_attribute_name(:birthday)
+          %dd= ms.staff.birthday

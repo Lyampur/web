@@ -1,12 +1,12 @@
 %p#notice= notice
 
 %p
-  %b Cinema:
-  = @cinema_movie.cinema
+  %b Кинотеатр:
+  = @cinema_movie.cinema.name
 %p
-  %b Movie:
-  = @cinema_movie.movie
+  %b Фильм:
+  = @cinema_movie.movie.name
 
-= link_to 'Edit', edit_cinema_movie_path(@cinema_movie)
+= link_to t("buttons.edit"), edit_cinema_movie_path(@cinema_movie), class: 'btn btn-info'
 \|
-= link_to 'Back', cinema_movies_path
+= link_to t("buttons.back"), cinema_movies_path, class: 'btn btn-primary'

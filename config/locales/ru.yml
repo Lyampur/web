@@ -19,33 +19,57 @@ ru:
       new-button: Новый фильм
       edit: Редактирование фильма
       new: Создание фильма
+      search: Поиск
+      search_result: Результат поиска
     cinemas:
       index: Список кинотеатров
       new-button: Новый кинотеатр
       edit: Редактирование кинотеатра
       new: Создание кинотеатра
     staffs:
-      index: Список работников
-      new-button: Новый работник
-      edit: Редактирование работника
-      new: Создание работника
+      index: Список сотрудников
+      new-button: Новый сотрудник
+      edit: Редактирование сотрудника
+      new: Создание сотрудника
   helpers:
+    notice:
+      update: успешно обновлен.
+      destroy: успешно удален.
+      create: успешно создан.
+    forms:
+      search: Поиск
+      movie: Фильм
+      movies: Фильмы
+      cinema: Кинотетр
+      cinemas: Кинотетры
+      staff: Сотрудник
+      staffs: Сотрудники
     submit:
       create: Сохранить
       submit: Сохранить
       update: Сохранить
     sure: Действительно удалить?
   buttons:
+    delete: Удалить
     edit: Редактировать
-    destroy: Удалить
+    destroy: Уничтожить
     show: Показать
+    back: Назад
+    search: Поиск
     confirm:
       user: Действительно удалить пользователя?
       role: Действительно удалить роль?
     new:
       user: Новый пользователь
       role: Новая роль
+      movie: Новый фильм
+      cinema: Новый кинотеатр
+      staff: Новый сотрудник
+      association: Новая связь
   headers:
+    movies:
+      search_result: Результаты поиска
+    root: Модели
     users:
       edit: Редактирование пользователя
       new: Новый пользователь
@@ -76,7 +100,8 @@ ru:
         activation_token_expires_at: Дата прекращения действия токена активации
         last_login_at: Время последнего входа в систему
         role_users: Роли
-
+      movie_staff:
+        role: Роль
       movie:
         name: Название
         genre: Жанр

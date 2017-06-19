@@ -1,5 +1,12 @@
-%h1 Новый фильм
+=breadcrumb_tag do
+  %li.active
+    = t('headers.root')
+  %li.active
+    = link_to t('app.movies.index'), movies_path
+  %li
+    = t('app.movies.new')
+
+.page-header
+  %h1= t('app.movies.new')
 
 = render 'form'
-
-= link_to 'Назад', movies_path
