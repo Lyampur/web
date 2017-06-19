@@ -10,6 +10,18 @@ class MoviesController < ApplicationController
     end
   end
 
+  def fill_staff_fields
+    # raise "ПАРАМЕТРЫ #{params.to_s}"
+    @staff = Staff.where(id: params[:staff_id]).first
+    @movie_staff = @staff.movie_staffs.where(movie_id: params[:id]).first
+    @timestamp = params[:timestamp].to_i
+    # raise "@movie_staff #{@movie_staff.nil?.to_s}"
+    # raise "@movie_staff #{@movie_staff.to_s}"
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /movies
   # GET /movies.json
   def index
@@ -37,12 +49,8 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
-    @staffs = []
-    params[:movie][:staffs].each{|a| @staffs << Staff.find(a) if a.present?}
-
     respond_to do |format|
       if @movie.save
-        @staffs.each{|a| a.movies << @movie}
         format.html { redirect_to @movie, notice: t('helpers.forms.movie') + ' ' + t('helpers.notice.create') }
         format.json { render :show, status: :created, location: @movie }
       else
@@ -55,11 +63,8 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
-    @staffs = []
-    params[:movie][:staffs].each{|a| @staffs << Staff.find(a) if a.present?}
     respond_to do |format|
       if @movie.update(movie_params)
-        @staffs.each{|a| a.movies << @movie}
         format.html { redirect_to @movie, notice: t('helpers.forms.movie') + ' ' + t('helpers.notice.update') }
         format.json { render :show, status: :ok, location: @movie }
       else

@@ -7,4 +7,8 @@ class Staff < ActiveRecord::Base
   def self.attributes_names
     self.new.attributes.keys - ['created_at', 'updated_at']
   end
+
+  def full_name
+    self.first_name + ' ' + self.last_name
+  end
 end

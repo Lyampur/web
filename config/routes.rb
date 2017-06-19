@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :cinema_movies
   resources :staffs
   resources :movies do
+    member do
+      post :fill_staff_fields
+    end
     collection do
       get :search
     end

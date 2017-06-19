@@ -102,6 +102,7 @@ ru:
         role_users: Роли
       movie_staff:
         role: Роль
+        staff_id: Выбранный сотрудник
       movie:
         name: Название
         genre: Жанр

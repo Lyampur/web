@@ -9,12 +9,18 @@
     .panel-body
       .row
         .col-md-12
+          = df.label :staff_id
+          = df.collection_select :staff_id, Staff.all,
+          :id, :full_name, {include_blank: true }, class: 'form-control'
+        .col-md-12
           .form-group
             = df.label :role
             = df.text_field :role, class: 'form-control'
             = df.error_messages_for(:role)
 
       = df.fields_for :staff, df.object.staff ||df.object.build_staff do |sf|
+        .staff-id
+          = sf.hidden_field :id
         .row
           .col-md-12.col-lg-6
             .form-group

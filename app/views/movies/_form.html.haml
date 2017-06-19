@@ -36,12 +36,6 @@
           = f.number_field :age_rating, class: 'form-control'
           = f.error_messages_for(:age_rating)
 
-
-  %h2 Выберите зарегистрированных авторов
-  %h3 (для выбора нескольких зажмите ctrl)
-  .field
-    = f.select :staffs, Staff.all.collect{|t| [t.last_name + " " + t.first_name, t.id]}, {:prompt => ""}, {:multiple => true, class: 'form-control'}
-  %h2 Введите данные для незарегистрированных авторов
   - i = 0
   .row.bottom20
     .col-md-12
