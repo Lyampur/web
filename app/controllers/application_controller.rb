@@ -24,15 +24,27 @@ class ApplicationController < ActionController::Base
         end
       end
       # Сохраняем в сессию, чтобы данная роль была выбрана и дальше
+      unless @current_role_user.nil?
+        session[:user_role_id] = @current_role_user.id
+      end
     end
   end
 
   ## Проверка прав доступа выбранной роли для данного метода
   def check_ctr_auth()
-    return @current_role_user.try(:is_admin? || :is_operator?)
+    return @current_role_user.try(:is_admin?) #:is_admin? || :is_operator?
   end
 
   def not_authenticated
     redirect_to login_path, danger: "Сначала войдите в систему!"
+  end
+
+  def check_permissions(*roles)
+    unless roles.find{|x| @current_role_user.try("is_#{x}?") }
+     redirect_to(ip_path(
+      bad_action_name: action_name,
+      bad_controller_name: controller_name,
+      bad_user_role: @current_role_user.try(:id)))
+    end
   end
 end

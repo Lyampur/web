@@ -35,6 +35,8 @@
           = f.label :age_rating
           = f.number_field :age_rating, class: 'form-control'
           = f.error_messages_for(:age_rating)
+        .field
+          = f.hidden_field :id
 
   - i = 0
   .row.bottom20

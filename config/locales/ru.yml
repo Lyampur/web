@@ -88,6 +88,8 @@ ru:
       truncate: …
   activerecord:
     models:
+      movie: Фильм
+      movie_staff: Фильм
       user: Пользователь
     attributes:
       user:
@@ -110,6 +112,12 @@ ru:
         country: Страна
         company: Компания
         age_rating: Возрастное ограничение
+      movie/movie_staffs:
+        role: Роль
+      movie_staffs/staff:
+        last_name: Фамилия
+        first_name: Имя
+        birthday: Дата рождения
       cinema:
         name: Название
         address: Адрес
@@ -137,3 +145,6 @@ ru:
       user/role_users:
         <<: *role_users
       # nested_finish
+  date:
+    formats:
+      default: "%d.%m.%Y"

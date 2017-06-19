@@ -63,6 +63,7 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
+    # raise params.inspect
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to @movie, notice: t('helpers.forms.movie') + ' ' + t('helpers.notice.update') }
@@ -102,7 +103,7 @@ class MoviesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
       params.require(:movie).permit(:name, :genre, :duration, :country, :company, :age_rating,
-      movie_staffs_attributes: [:id, :_destroy, :role,
-      staff_attributes: [:last_name, :first_name, :birthday] ])
+      movie_staffs_attributes: [:id, :_destroy, :role,          :staff_id,
+      staff_attributes: Staff.attributes_names.map(&:to_sym) ] )
     end
 end
