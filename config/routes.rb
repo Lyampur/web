@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
+  post '/fill_staff_fields' => 'movies#fill_staff_fields'
+
+
   resources :movie_staffs
   resources :cinema_movies
   resources :staffs
   resources :movies do
     member do
-      post :fill_staff_fields
+      # post :fill_staff_fields
     end
     collection do
+      # post :fill_staff_fields
       get :search
     end
   end

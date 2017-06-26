@@ -36,4 +36,4 @@ $(selectorId + timestamp + selectorAttributes + 'first_name').val( first_name )
 $(selectorId + timestamp + selectorAttributes + 'last_name').val( last_name )
 $(selectorId + timestamp + selectorAttributes + 'birthday').val( birthday )
 
-console.log("Удача! это сообщение - конечный приемник")
+# console.log("Удача! это сообщение - конечный приемник")

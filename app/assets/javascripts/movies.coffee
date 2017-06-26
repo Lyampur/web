@@ -1,20 +1,23 @@
 fillFields = ->
-  $('select[id$=staff_id]').on 'change', (e) ->
+  allDropdownLists = $('select[id$=staff_id]')
+  allDropdownLists.off('change')
+  allDropdownLists.on 'change', (e) ->
+    # console.log('сработал эвент измены выпадающего ')
     # console.log('выведем this')
     # console.log( $(this).find('option:selected').val() )
     selectedStaff = $(this).find('option:selected').val()
     name = $(this).attr('name').match(/attributes]\[(\d+)\]/)
     timestamp = name[name.length - 1]
-    console.log("попытка послать ajax")
+    # console.log("попытка послать ajax")
     $.ajax
-      url: 'fill_staff_fields'
+      url: '/fill_staff_fields'
       type: 'POST'
       dataType: 'script'
       data: { staff_id: selectedStaff, timestamp: timestamp }
-      error: (jqXHR, textStatus, errorThrown) ->
-        console.log("AJAX error: #{textStatus}")
-      success: (data, textStatus, jqXHR) ->
-        console.log("AJAX OK!")
+      # error: (jqXHR, textStatus, errorThrown) ->
+      #   console.log("AJAX error: #{textStatus}")
+      # success: (data, textStatus, jqXHR) ->
+      #   console.log("AJAX OK!")
 
 
 @delete_one_stf = (link)->
